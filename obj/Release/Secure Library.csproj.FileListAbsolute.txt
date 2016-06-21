@@ -1,0 +1,6 @@
+C:\Users\Daszu\documents\visual studio 2013\Projects\Secure Library\Secure Library\bin\Release\Secure Library.dll.config
+C:\Users\Daszu\documents\visual studio 2013\Projects\Secure Library\Secure Library\bin\Release\Secure Library.dll
+C:\Users\Daszu\documents\visual studio 2013\Projects\Secure Library\Secure Library\bin\Release\Secure Library.pdb
+C:\Users\Daszu\documents\visual studio 2013\Projects\Secure Library\Secure Library\obj\Release\Secure Library.dll
+C:\Users\Daszu\documents\visual studio 2013\Projects\Secure Library\Secure Library\obj\Release\Secure Library.pdb
+C:\Users\Daszu\Documents\Visual Studio 2013\Projects\Secure Library\Secure Library\obj\Release\Secure Library.csprojResolveAssemblyReference.cache

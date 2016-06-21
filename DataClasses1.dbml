@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="USERMANAGEMENT" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DASZU-KOMPUTER;Initial Catalog=USERMANAGEMENT;Integrated Security=True" SettingsObjectName="Secure_Library.Properties.Settings" SettingsPropertyName="USERMANAGEMENTConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.GroupPermission" Member="GroupPermissions">
+    <Type Name="GroupPermission">
+      <Column Name="GroupID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PermID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AddDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Group_GroupPermission" Member="Group" ThisKey="GroupID" OtherKey="GroupID" Type="Group" IsForeignKey="true" />
+      <Association Name="Permission_GroupPermission" Member="Permission" ThisKey="GroupID" OtherKey="PermID" Type="Permission" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Groups" Member="Groups">
+    <Type Name="Group">
+      <Column Name="GroupID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Group_GroupPermission" Member="GroupPermissions" ThisKey="GroupID" OtherKey="GroupID" Type="GroupPermission" />
+      <Association Name="Group_GroupUser" Member="GroupUsers" ThisKey="GroupID" OtherKey="GroupId" Type="GroupUser" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GroupUser" Member="GroupUsers">
+    <Type Name="GroupUser">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GroupId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AddDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Group_GroupUser" Member="Group" ThisKey="GroupId" OtherKey="GroupID" Type="Group" IsForeignKey="true" />
+      <Association Name="User_GroupUser" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserPermission" Member="UserPermissions">
+    <Type Name="UserPermission">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PermID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AddDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Permission_UserPermission" Member="Permission" ThisKey="PermID" OtherKey="PermID" Type="Permission" IsForeignKey="true" />
+      <Association Name="User_UserPermission" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Permissions" Member="Permissions">
+    <Type Name="Permission">
+      <Column Name="PermID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DispName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Permission_GroupPermission" Member="GroupPermissions" ThisKey="PermID" OtherKey="GroupID" Type="GroupPermission" />
+      <Association Name="Permission_UserPermission" Member="UserPermissions" ThisKey="PermID" OtherKey="PermID" Type="UserPermission" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Pass" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="User_GroupUser" Member="GroupUsers" ThisKey="UserID" OtherKey="UserID" Type="GroupUser" />
+      <Association Name="User_UserPermission" Member="UserPermissions" ThisKey="UserID" OtherKey="UserID" Type="UserPermission" />
+    </Type>
+  </Table>
+</Database>
